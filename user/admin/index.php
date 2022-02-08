@@ -1,29 +1,161 @@
 <?php include 'settings.php'; //include settings 
 ?>
+
+<?php
+//index.php
+$query = "select  i.id as id_inci, s.nombre as nombreservicio,tp.nombre as nombretipo from incidencias i
+inner join servicios s on  i.id_servicio_1=s.id
+inner join tipo_servicio tp on  tp.id = s.id_tipoServicio_1;";
+$result = mysqli_query($conn, $query);
+?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <title>ADMIN</title>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-  <!-- MDB -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" />
+  <title>CRUD INCIDENCIAS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <h1>This is Admin page</h1>
-  <h2>Hello: <?php $ufunc->UserName(); //Show name who is in session user
-              ?></h2>
-  <a href="../../includes/logout.php">Logout</a>
-  <!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"
-></script>
+  <br /><br />
+  <div class="container" style="width:700px;">
+    <h3 align="center">CRUD</h3>
+    <br />
+    <div class="table-responsive">
+      <div align="right">
+        <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Registrar</button>
+      </div>
+      <br />
+      <div id="employee_table">
+        <table class="table table-bordered">
+          <tr>
+            <th>ID</th>
+            <th>Servicio</th>
+            <th>Tipo</th>
+            <th>Ver</th>
+
+          </tr>
+          <?php
+          while ($row = mysqli_fetch_array($result)) {
+          ?>
+            <tr>
+            <td><?php echo $row["id_inci"]; ?></td>
+              <td><?php echo $row["nombreservicio"]; ?></td>
+              <td><?php echo $row["nombretipo"]; ?></td>
+              <td><input type="button" name="view" value="Ver" id="<?php echo $row["id_inci"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+            </tr>
+          <?php
+          }
+          ?>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
+
+<div id="add_data_Modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">PHP Ajax Insert Data in MySQL By Using Bootstrap Modal</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="insert_form">
+          <label>Enter Employee Name</label>
+          <input type="text" name="name" id="name" class="form-control" />
+          <br />
+          <label>Enter Employee Address</label>
+          <textarea name="address" id="address" class="form-control"></textarea>
+          <br />
+          <label>Select Gender</label>
+          <select name="gender" id="gender" class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <br />
+          <label>Enter Designation</label>
+          <input type="text" name="designation" id="designation" class="form-control" />
+          <br />
+          <label>Enter Age</label>
+          <input type="text" name="age" id="age" class="form-control" />
+          <br />
+          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dataModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Employee Details</h4>
+      </div>
+      <div class="modal-body" id="employee_detail">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#insert_form').on("submit", function(event) {
+      event.preventDefault();
+      if ($('#name').val() == "") {
+        alert("Name is required");
+      } else if ($('#address').val() == '') {
+        alert("Address is required");
+      } else if ($('#designation').val() == '') {
+        alert("Designation is required");
+      } else {
+        $.ajax({
+          url: "insert.php",
+          method: "POST",
+          data: $('#insert_form').serialize(),
+          beforeSend: function() {
+            $('#insert').val("Inserting");
+          },
+          success: function(data) {
+            $('#insert_form')[0].reset();
+            $('#add_data_Modal').modal('hide');
+            $('#employee_table').html(data);
+          }
+        });
+      }
+    });
+
+
+
+
+    $(document).on('click', '.view_data', function() {
+      //$('#dataModal').modal();
+      var id = $(this).attr("id");
+      $.ajax({
+        url: "select.php",
+        method: "POST",
+        data: {
+          id: id
+        },
+        success: function(data) {
+          $('#employee_detail').html(data);
+          $('#dataModal').modal('show');
+        }
+      });
+    });
+  });
+</script>
