@@ -1,43 +1,44 @@
 
+<?php include 'settings.php'; //include settings 
+?>
 <?php
-//insert.php  
-$connect = mysqli_connect("localhost", "root", "", "testing");
-if(!empty($_POST))
-{
- $output = '';
- $name = mysqli_real_escape_string($connect, $_POST["name"]);  
-    $address = mysqli_real_escape_string($connect, $_POST["address"]);  
-    $gender = mysqli_real_escape_string($connect, $_POST["gender"]);  
-    $designation = mysqli_real_escape_string($connect, $_POST["designation"]);  
-    $age = mysqli_real_escape_string($connect, $_POST["age"]);
-    $query = "
-    INSERT INTO employee(name, address, gender, designation, age)  
-     VALUES('$name', '$address', '$gender', '$designation', '$age')
+
+if (!empty($_POST)) {
+     $output = '';
+     $nombrets = mysqli_real_escape_string($conn, $_POST["nombrets"]);
+     $query = "
+    INSERT INTO tipo_servicio(nombrets)  
+     VALUES('$nombrets')
     ";
-    if(mysqli_query($connect, $query))
-    {
-     $output .= '<label class="text-success">Data Inserted</label>';
-     $select_query = "SELECT * FROM employee ORDER BY id DESC";
-     $result = mysqli_query($connect, $select_query);
-     $output .= '
+     if (mysqli_query($conn, $query)) {
+          $output .= '<label class="text-success">Insert OK</label>';
+          $select_query = "select * from incidencias i
+     inner join servicios s on  i.id_servicio_1=s.id
+     inner join tipo_servicio tp on  tp.id = s.id_tipoServicio_1
+     inner join area a on i.id_area_1= a.id";
+          $result = mysqli_query($conn, $select_query);
+          $output .= '
       <table class="table table-bordered">  
                     <tr>  
-                         <th width="70%">Employee Name</th>  
-                         <th width="30%">View</th>  
+                        <th>ID</th>
+            <th>Servicio</th>
+            <th>Tipo</th>
+            <th>Ver</th>
                     </tr>
 
      ';
-     while($row = mysqli_fetch_array($result))
-     {
-      $output .= '
+          while ($row = mysqli_fetch_array($result)) {
+               $output .= '
        <tr>  
-                         <td>' . $row["name"] . '</td>  
-                         <td><input type="button" name="view" value="view" id="' . $row["id"] . '" class="btn btn-info btn-xs view_data" /></td>  
+       <td>' . $row["id"] . '</td> 
+       <td>' . $row["nombres"] . '</td>  
+                         <td>' . $row["nombrets"] . '</td>  
+                         <td><input type="button" name="Ver" value="Ver" id="' . $row["id"] . '" class="btn btn-info btn-xs view_data" /></td>  
                     </tr>
       ';
+          }
+          $output .= '</table>';
      }
-     $output .= '</table>';
-    }
-    echo $output;
+     echo $output;
 }
 ?>
