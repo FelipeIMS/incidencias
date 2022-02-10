@@ -3,7 +3,7 @@
 
 <?php
 //index.php
-$query = "select  i.id as id_inci, s.nombre as nombreservicio,tp.nombre as nombretipo from incidencias i
+$query = "select  i.id as id_inci, s.nombres as nombreservicio,tp.nombrets as nombretipo from incidencias i
 inner join servicios s on  i.id_servicio_1=s.id
 inner join tipo_servicio tp on  tp.id = s.id_tipoServicio_1;";
 $result = mysqli_query($conn, $query);
@@ -21,11 +21,11 @@ $result = mysqli_query($conn, $query);
 <body>
   <br /><br />
   <div class="container" style="width:700px;">
-    <h3 align="center">CRUD</h3>
+    <h3 align="center">Incidencias Clinica Lircay</h3>
     <br />
     <div class="table-responsive">
       <div align="right">
-        <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Registrar</button>
+        <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Registrar Tipo Servicio</button>
       </div>
       <br />
       <div id="employee_table">
@@ -61,35 +61,20 @@ $result = mysqli_query($conn, $query);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">PHP Ajax Insert Data in MySQL By Using Bootstrap Modal</h4>
+        <h4 class="modal-title">Registro Tipo Servicio</h4>
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
-          <label>Enter Employee Name</label>
-          <input type="text" name="name" id="name" class="form-control" />
+          <label>Nombre tipo servicio</label>
+          <input type="text" name="nombrets" id="nombrets" class="form-control" />
           <br />
-          <label>Enter Employee Address</label>
-          <textarea name="address" id="address" class="form-control"></textarea>
-          <br />
-          <label>Select Gender</label>
-          <select name="gender" id="gender" class="form-control">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          <br />
-          <label>Enter Designation</label>
-          <input type="text" name="designation" id="designation" class="form-control" />
-          <br />
-          <label>Enter Age</label>
-          <input type="text" name="age" id="age" class="form-control" />
-          <br />
+         
           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Salir</button>
       </div>
     </div>
   </div>
@@ -99,8 +84,7 @@ $result = mysqli_query($conn, $query);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Employee Details</h4>
+        <h4 class="modal-title text-center">Detalle Incidencia</h4>
       </div>
       <div class="modal-body" id="employee_detail">
 
@@ -116,7 +100,7 @@ $result = mysqli_query($conn, $query);
   $(document).ready(function() {
     $('#insert_form').on("submit", function(event) {
       event.preventDefault();
-      if ($('#name').val() == "") {
+      if ($('#nombrets').val() == "") {
         alert("Name is required");
       } else if ($('#address').val() == '') {
         alert("Address is required");
