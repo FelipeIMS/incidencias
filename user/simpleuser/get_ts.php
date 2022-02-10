@@ -6,7 +6,7 @@
 	$queryM = "SELECT id, nombrets FROM tipo_servicio WHERE id = '$id_estado' ORDER BY nombrets";
 	$resultadoM = $conn->query($queryM);
 	
-	$html= "<option value='0'>Seleccionar Municipio</option>";
+	$html= "<option value='0'>Seleccionar Tipo de Servicio</option>";
 	
 	while($rowM = $resultadoM->fetch_assoc())
 	{
