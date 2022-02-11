@@ -2,7 +2,6 @@
 require ('settings.php');
 	
 $observacion = $_POST['obs'];
-// $fechaInicio = $_POST['fechaInicio'];
 $fechaFin = $_POST['fechaFin'];
 $id_servicio_1 = $_POST['combo_servicio'];
 $id_area_1 = $_POST['select_area'];
