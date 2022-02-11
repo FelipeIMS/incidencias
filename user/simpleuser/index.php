@@ -40,8 +40,6 @@
 	<center>
 		<form id="combo" name="combo" action="guarda.php" method="POST">
 			
-
-			
 			<div>Selecciona Servicio : <select name="combo_servicio" id="combo_servicio">
 				<option value="0">Seleccionar Servicio</option>
 				<?php while($row = $resultado->fetch_assoc()) { ?>
@@ -63,18 +61,18 @@
 			</select></div>
 
 			<br />
+			<!-- <div class="form-outline mb-4 w-25">
+				<input type="text" id="fechaI" name = "fechaInicio" class="form-control" />
+				<label class="form-label" for="fechaI">Fecha Inicio</label>
+			</div> -->
 			<div class="form-outline mb-4 w-25">
-				<input type="text" id="form12" class="form-control" />
-				<label class="form-label" for="form12">Example label</label>
-			</div>
-			<div class="form-outline mb-4 w-25">
-				<input type="text" id="form13" class="form-control" />
-				<label class="form-label" for="form12">Example label</label>
+				<input type="text" id="fechaF" name="fechaFin" class="form-control" />
+				<label class="form-label" for="fechaF">Fecha Fin</label>
 			</div>
 
 			<div class="form-outline mb-4 w-25 ">
-				<textarea class="form-control" id="textAreaExample" style= "resize: none;" rows="4"></textarea>
-				<label class="form-label" for="textAreaExample">Observacion</label>
+				<textarea class="form-control" id="obs" name="obs" style= "resize: none;" rows="4"></textarea>
+				<label class="form-label" for="obs">Observacion</label>
 			</div>
 
 			<div class="form-outline mb-4 w-25 ">
@@ -85,7 +83,7 @@
 			</div>
 			
 			<input type="submit" class="btn btn-info" id="enviar" name="enviar" value="Guardar" />
-			</form>
+		</form>
 			<br />
 
 
@@ -96,7 +94,8 @@
 		
 		
 		
-	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<script
 		type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"
