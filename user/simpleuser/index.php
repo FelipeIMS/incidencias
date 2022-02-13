@@ -71,11 +71,11 @@
 						</div>
 						<button type="button" class="btn btn-success">Finalizar incidencia</button>
 						
+						<div class="card-footer text-muted mt-3">
+							<input type="submit" class="btn btn-info" id="enviar" name="enviar" value="Guardar" />
+						</div>
 					</form>
 					
-				</div>
-				<div class="card-footer text-muted">
-					<input type="submit" class="btn btn-info" id="enviar" name="enviar" value="Guardar" />
 				</div>
 			</div>
 		  </div>
