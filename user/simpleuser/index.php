@@ -1,8 +1,8 @@
 <?php	
 	include 'settings.php'; //include settings
-	$query = "SELECT id, nombres FROM servicios ORDER BY nombres";
+	$query = "SELECT id_servicio, nombres FROM servicios ORDER BY nombres";
 	$resultado=$conn->query($query);
-	$query2 = "SELECT id, nombreArea FROM area ORDER BY nombreArea";
+	$query2 = "SELECT id_area, nombreArea FROM area ORDER BY nombreArea";
 	$resultado2=$conn->query($query2);
 ?>
 <!DOCTYPE html>
@@ -22,8 +22,8 @@
 					$('#combo_area').find('option').remove().end().append('<option value="whatever"></option>').val('whatever');
 					
 					$("#combo_servicio option:selected").each(function () {
-						id = $(this).val();
-						$.post("get_ts.php", { id: id }, function(data){
+						id_tp = $(this).val();
+						$.post("get_ts.php", { id_tp: id_tp }, function(data){
 							$("#combo_ts").html(data);
 						});            
 					});
@@ -35,7 +35,6 @@
   <body>
 	  <header class= "header__content">
 		  <h1>This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1>
-
 	  </header>
 	  <div class="container">
 
@@ -48,7 +47,7 @@
 						<div class="mt-3">Selecciona Servicio : <select name="combo_servicio" id="combo_servicio">
 							<option value="0">Seleccionar Servicio</option>
 							<?php while($row = $resultado->fetch_assoc()) { ?>
-								<option value="<?php echo $row['id']; ?>"><?php echo $row['nombres']; ?></option>
+								<option value="<?php echo $row['id_servicio']; ?>"><?php echo $row['nombres']; ?></option>
 							<?php } ?>
 						</select></div>
 						
@@ -57,7 +56,7 @@
 						<div>Selecciona Area : <select name="select_area" id="select_area">
 						<option value="0">Seleccionar Area</option>
 							<?php while($row = $resultado2->fetch_assoc()) { ?>
-								<option value="<?php echo $row['id']; ?>"><?php echo $row['nombreArea']; ?></option>
+								<option value="<?php echo $row['id_area']; ?>"><?php echo $row['nombreArea']; ?></option>
 							<?php } ?>
 						</select></div>
 						<div class="form-outline mt-3 mb-3 w-50" style="margin: 0 auto;">

@@ -1,16 +1,16 @@
 <?php
 	require ('../../includes/connect.php');
 	
-	$id_estado = $_POST['id'];
+	$id_tp = $_POST['id_tp'];
 	
-	$queryM = "SELECT id, nombrets FROM tipo_servicio WHERE id = '$id_estado' ORDER BY nombrets";
+	$queryM = "SELECT id_tipoServicio, nombrets FROM tipo_servicio WHERE id_tipoServicio = '$id_tp' ORDER BY nombrets";
 	$resultadoM = $conn->query($queryM);
 	
 	$html= "<option value='0'>Seleccionar Tipo de Servicio</option>";
 	
 	while($rowM = $resultadoM->fetch_assoc())
 	{
-		$html.= "<option value='".$rowM['id']."'>".$rowM['nombrets']."</option>";
+		$html.= "<option value='".$rowM['id_tipoServicio']."'>".$rowM['nombrets']."</option>";
 	}
 	
 	echo $html;
