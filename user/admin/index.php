@@ -3,9 +3,10 @@
 
 <?php
 //index.php
-$query = "select  i.id as id_inci, s.nombres as nombreservicio,tp.nombrets as nombretipo from incidencias i
-inner join servicios s on  i.id_servicio_1=s.id
-inner join tipo_servicio tp on  tp.id = s.id_tipoServicio_1;";
+$query = "SELECT incidencias.id_incidencias as id, servicios.nombres as nombreservicio,tipo_servicio.nombrets as nombretipo  FROM incidencias
+inner join servicios on servicios.id_servicio = incidencias.id_servicio_1
+inner join tipo_servicio on tipo_servicio.id_tipoServicio = incidencias.id_servicio_1
+order by  id ASC";
 $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
@@ -41,10 +42,10 @@ $result = mysqli_query($conn, $query);
           while ($row = mysqli_fetch_array($result)) {
           ?>
             <tr>
-            <td><?php echo $row["id_inci"]; ?></td>
+            <td><?php echo $row["id"]; ?></td>
               <td><?php echo $row["nombreservicio"]; ?></td>
               <td><?php echo $row["nombretipo"]; ?></td>
-              <td><input type="button" name="view" value="Ver" id="<?php echo $row["id_inci"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+              <td><input type="button" name="view" value="Ver" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-xs view_data" /></td>
             </tr>
           <?php
           }
