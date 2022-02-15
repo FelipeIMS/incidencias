@@ -81,8 +81,11 @@
                     </div>
 
                     <button type="button" class="btn btn-success disabled">Finalizar incidencia</button>
+                    <div class="card-footer mt-3">
+
+                        <input type="submit" class="btn btn-info" id="enviar" name="enviar" value="Guardar" />
+                    </div>
         
-                    <input type="submit" class="btn btn-info" id="enviar" name="enviar" value="Guardar" />
                 </form>
             </div>
         </div>
