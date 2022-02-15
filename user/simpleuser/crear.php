@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div class="col-md-4">
+    <div class="col-md-6" style = "margin: 50px auto;">
         <div class="card text-center">
             <div class="card-header">
                 Crear Incidencia
@@ -59,10 +59,10 @@
                         <?php } ?>
                     </select>
         
-                    <select class="form-select form-select-md mt-3" name="combo_ts" id="combo_ts"
-                        style="margin: 0 auto; width: 400px;"></select>
-                    <select class="form-select form-select-md mt-3" name="select_area" id="select_area"
-                        aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
+                    <select class="form-select form-select-md mt-3" name="combo_ts" id="combo_ts" style="margin: 0 auto; width: 400px;"></select>
+
+
+                    <select class="form-select form-select-md mt-3" name="select_area" id="select_area" aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
                         <option value="0">Seleccionar Area</option>
                         <?php while($row = $resultado2->fetch_assoc()) { ?>
                         <option value="<?php echo $row['id_area']; ?>"><?php echo $row['nombreArea']; ?></option>

@@ -35,13 +35,11 @@ $result = mysqli_query($conn, $query);
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 </head>
 <body>
-    <header class="header__content d-flex">
+    <header class="header__content">
         <h1>This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1>
         <a href="../../includes/logout.php" class="btn btn-danger">Logout</a>
     </header>
-
-    <div class="row">
-        <div class="col-md-10" style="margin: 20px auto;" >
+        <div class="col-md-10" style="margin: 20px auto" >
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -68,6 +66,7 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row["fechaInicio"]; ?></td>
                     <td><?php echo $row["fechaFin"]; ?></td>
                     <td><?php echo $row["observacion"]; ?></td>
+                    <td>acciones</td>
                 </tr>
             <?php
             }
@@ -78,7 +77,6 @@ $result = mysqli_query($conn, $query);
             </table>
             
         </div>
-    </div>
     
     
 </body>
