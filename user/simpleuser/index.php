@@ -5,9 +5,9 @@ include('settings.php');
 //index.php
 $query = "SELECT incidencias.id_incidencias as id, servicios.nombres as nombreservicio,tipo_servicio.nombrets as nombretipo,observacion, fechaInicio, fechaFin, area.nombreArea as nombre_area  FROM incidencias
 inner join servicios on servicios.id_servicio = incidencias.id_servicio_1
-inner join tipo_servicio on tipo_servicio.id_tipoServicio = incidencias.id_servicio_1
+inner join tipo_servicio on tipo_servicio.id_tipoServicio = incidencias.id_tipoServicio_1
 inner join area on area.id_area = incidencias.id_area_1
-ORDER BY id ASC";
+ORDER BY id ASC ;";
 $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
