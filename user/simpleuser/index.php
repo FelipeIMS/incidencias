@@ -3,10 +3,11 @@ include('settings.php');
 ?>
 <?php
 //index.php
-$query = "SELECT incidencias.id_incidencias as id, servicios.nombres as nombreservicio,tipo_servicio.nombrets as nombretipo  FROM incidencias
+$query = "SELECT incidencias.id_incidencias as id, servicios.nombres as nombreservicio,tipo_servicio.nombrets as nombretipo,observacion, fechaInicio, fechaFin, area.nombreArea as nombre_area  FROM incidencias
 inner join servicios on servicios.id_servicio = incidencias.id_servicio_1
 inner join tipo_servicio on tipo_servicio.id_tipoServicio = incidencias.id_servicio_1
-order by  id ASC";
+inner join area on area.id_area = incidencias.id_area_1
+ORDER BY id ASC";
 $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
@@ -60,13 +61,13 @@ $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_array($result)) {
             ?>
                 <tr>
-                <td><?php echo $row["id"]; ?></td>
-                <td><?php echo $row["nombreservicio"]; ?></td>
-                <td><?php echo $row["nombretipo"]; ?></td>
-                <td><?php echo $row["nombretipo"]; ?></td>
-                <td><?php echo $row["nombretipo"]; ?></td>
-                <td><?php echo $row["nombretipo"]; ?></td>
-                <td><?php echo $row["nombretipo"]; ?></td>
+                    <td><?php echo $row["id"]; ?></td>
+                    <td><?php echo $row["nombreservicio"]; ?></td>
+                    <td><?php echo $row["nombretipo"]; ?></td>
+                    <td><?php echo $row["nombre_area"]; ?></td>
+                    <td><?php echo $row["fechaInicio"]; ?></td>
+                    <td><?php echo $row["fechaFin"]; ?></td>
+                    <td><?php echo $row["observacion"]; ?></td>
                 </tr>
             <?php
             }
