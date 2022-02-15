@@ -69,6 +69,21 @@ $result = mysqli_query($conn, $query);
           <label>Nombre tipo servicio</label>
           <input type="text" name="nombrets" id="nombrets" class="form-control" />
           <br />
+          <?php
+          $resultado = $conn->query("SELECT * FROM servicios ORDER BY  nombres");
+          $t = mysqli_num_rows($resultado);
+          ?>
+          <select name="servicioid" id="servicioid">
+            <?php
+            if($t>=1){
+              while($row = $resultado ->fetch_object()){
+                ?>
+                <option value="<?php echo  $row-> id_servicio ?>"><?php echo  $row->nombres ?></option>
+                <?php
+              }
+            }
+            ?>
+          </select>
          
           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
 
