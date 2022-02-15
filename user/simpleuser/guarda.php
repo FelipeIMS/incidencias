@@ -11,14 +11,12 @@ $sql = "INSERT INTO incidencias (observacion, fechaInicio, fechaFin, id_servicio
 $resultado = $conn->query($sql);
 
 if($resultado){
-<<<<<<< HEAD
+
 	echo "Registro Guardado";
 	echo "$sql";
-=======
-	// echo "Registro Guardado";
-	echo $sql;
->>>>>>> c05bf0e56151c38d9ed5e633f585d9f24f4b1116
+
 	} else {
 	echo "Error al Registrar";
+
 }
 ?>
