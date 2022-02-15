@@ -15,6 +15,7 @@ if($resultado){
 	echo "Registro Guardado";
 	echo "$sql";
 
+
 	} else {
 	echo "Error al Registrar";
 
