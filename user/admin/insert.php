@@ -1,6 +1,19 @@
 
 <?php include 'settings.php'; //include settings 
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
 <?php
 
 if (!empty($_POST)) {
@@ -15,45 +28,45 @@ if (!empty($_POST)) {
 
      if(mysqli_num_rows($servicio)>0)
      {
-          echo "Este dato ya existe";
+       echo "<script>  Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Error, dato ya existe',
+          showConfirmButton: false,
+          timer: 1500
+        });</script>";
+        
      }
      else{
           $query = "
           INSERT INTO tipo_servicio(nombrets,id_servicio_2)  
            VALUES('$nombrets', '$servicioid')
           ";
-          if(mysqli_query($conn, $query))
-          {
-           $output .= '<label class="text-success">Data Inserted</label>';
-           $select_query = "SELECT * FROM employee ORDER BY id DESC";
-           $result = mysqli_query($conn, $select_query);
-           $output .= '
-            <table class="table table-bordered">  
-                          <tr>  
-                          <th>ID</th>
-                          <th>Servicio</th>
-                          <th>Tipo</th>
-                          <th>Ver</th>
-                          </tr>
-      
-           ';
-           while($row = mysqli_fetch_array($result))
-           {
-            $output .= '
-            <tr>
-            <td><?php echo $row["id"]; ?></td>
-              <td><?php echo $row["nombreservicio"]; ?></td>
-              <td><?php echo $row["nombretipo"]; ?></td>
-              <td><input type="button" name="view" value="Ver" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-xs view_data" /></td>
-            </tr>
-            ';
-           }
-           $output .= '</table>';
-          }
-          echo $output;
-      }
+          if (mysqli_query($conn, $query)) {
+               echo "<script>  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });</script>";
+                  echo '<script type="text/JavaScript"> setTimeout(function(){
+                    window.location.reload(1);
+                 }, 3000); </script>';
+            } else {
+              
+               echo "Error: " . $sql . "" . mysqli_error($conn);
+            }
+            $conn->close();
+         }
+       
+        
      }
-    
-
 
 ?>
+
+
+</body>
+
+
+</html>
