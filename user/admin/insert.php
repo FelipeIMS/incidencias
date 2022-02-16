@@ -35,6 +35,9 @@ if (!empty($_POST)) {
           showConfirmButton: false,
           timer: 1500
         });</script>";
+        echo '<script type="text/JavaScript"> setTimeout(function(){
+         window.location.reload(1);
+      }, 3000); </script>';
         
      }
      else{
