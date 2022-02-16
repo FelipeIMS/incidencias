@@ -17,10 +17,8 @@
 <?php
 
 if (!empty($_POST)) {
-     $output = '';
      $nombrets = mysqli_real_escape_string($conn, $_POST["nombrets"]);
      $servicioid =mysqli_real_escape_string($conn, $_POST["servicioid"]);
-     $duplicado = mysqli_query($conn,"select * from tipo_servicio where  nombrets='$nombrets'");
      $servicio = mysqli_query($conn,"SELECT tipo_servicio.*, servicios.id_servicio
      FROM tipo_servicio 
      LEFT JOIN servicios ON tipo_servicio.id_servicio_2 = servicios.id_servicio

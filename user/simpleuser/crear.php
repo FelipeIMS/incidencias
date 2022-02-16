@@ -56,10 +56,14 @@
                             <?php } ?>
 
                         </select>
-
-                        <div class="form-outline mt-3 mb-3" style="margin: 0 auto; width: 400px;">
-                            <input type="text" id="fechaF" name="fechaFin" class="form-control" disabled />
-                            <label class="form-label" for="fechaF">Termino</label>
+                        
+                        <div class="mt-3 mb-3 " style="margin: 0 auto; width: 400px;">
+                            <label class="form-label" style="font-size:20px; font-weight: bold;" for="fechaF">Inicio</label>
+                            <input type='datetime-local' step=1 id="fecha_inicio" name="fecha_inicio" class="form-control" />
+                        </div>
+                        <div class="mt-3 mb-3" style="margin: 0 auto; width: 400px;">
+                            <label class="form-label" style="font-size:20px; font-weight: bold;" for="fechaF">Fin</label>
+                            <input type="datetime-local" step=1 id="fechaF" name="fecha_fin" class="form-control" />
                         </div>
 
                         <div class="form-outline mb-3 " style="margin: 0 auto; width: 400px;">
@@ -111,7 +115,7 @@
         })
     });
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     $(document).ready(function() {
         $('#combo').on('submit', function(e) { //Don't foget to change the id form
             $.ajax({
@@ -121,19 +125,13 @@
                 success: function(data) {
                     console.log(data);
                     //Success Message == 'Title', 'Message body', Last one leave as it is
-                    swal("¡Guardado!", "Incidencia guardada con exito!", "success").then(()=>{
-                        window.location = "index.php";
-                    });
-                },
-                error: function(data) {
-                    //Error Message == 'Title', 'Message body', Last one leave as it is
-                    swal("Oops...", "Something went wrong :(", "error");
+                    // swal("¡Guardado!", "Incidencia guardada con exito!", "success")
                 }
             });
             e.preventDefault(); //This is to Avoid Page Refresh and Fire the Event "Click"
         });
     });
-    </script>
+    </script> -->
 
 
 </body>
