@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css">
-  
+
     <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet"
         type="text/css">
 
@@ -24,65 +24,76 @@
 
 <body>
 
-<div class="container">
-<div class="col-md-6" style = "margin: 50px auto;">
-        <div class="card text-center">
-            <div class="card-header">
-                Crear Incidencia
-            </div>
-            <div class="card-body">
-                <form id="combo" name="combo" action="guarda.php" method="POST">
-        
-                    <select name="combo_servicio" id="combo_servicio" class="form-select form-select-md mt-3"
-                        aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
-                        <option value="0"> Servicio</option>
-                        <?php while($row = $resultado->fetch_assoc()) { ?>
-                        <option value="<?php echo $row['id_servicio']; ?>"><?php echo $row['nombres']; ?></option>
-                        <?php } ?>
-                    </select>
-        
-                    <select class="form-select form-select-md mt-3" name="combo_ts" id="combo_ts" style="margin: 0 auto; width: 400px;"></select>
+    <header class="header__container">
+
+    </header>
+    <div class="container">
+        <div class="col-md-6" style="margin: 50px auto;">
+            <div class="card text-center">
+                <div class="card-header">
+                    Crear Incidencia
+                </div>
+                <div class="card-body">
+                    <form id="combo" name="combo" action="guarda.php" method="POST">
+
+                        <select name="combo_servicio" id="combo_servicio" class="form-select form-select-md mt-3"
+                            aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
+                            <option value="0"> Servicio</option>
+                            <?php while($row = $resultado->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['id_servicio']; ?>"><?php echo $row['nombres']; ?></option>
+                            <?php } ?>
+                        </select>
+
+                        <select class="form-select form-select-md mt-3" name="combo_ts" id="combo_ts"
+                            style="margin: 0 auto; width: 400px;"></select>
 
 
-                    <select class="form-select form-select-md mt-3" name="select_area" id="select_area" aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
-                        <option value="0"> Area</option>
-                        <?php while($row = $resultado2->fetch_assoc()) { ?>
-                        <option value="<?php echo $row['id_area']; ?>"><?php echo $row['nombreArea']; ?></option>
-                        <?php } ?>
-        
-                    </select>
-        
-                    <div class="form-outline mt-3 mb-3" style="margin: 0 auto; width: 400px;">
-                        <input type="text" id="fechaF" name="fechaFin" class="form-control" disabled />
-                        <label class="form-label" for="fechaF">Termino</label>
-                    </div>
-        
-                    <div class="form-outline mb-3 " style="margin: 0 auto; width: 400px;">
-                        <textarea required class="form-control" id="obs" name="obs" style="resize: none;" rows="6"></textarea>
-                        <label class="form-label" for="obs">Observacion</label>
-                    </div>
+                        <select class="form-select form-select-md mt-3" name="select_area" id="select_area"
+                            aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
+                            <option value="0"> Area</option>
+                            <?php while($row = $resultado2->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['id_area']; ?>"><?php echo $row['nombreArea']; ?></option>
+                            <?php } ?>
 
-                    <div class="card-footer mt-3">
-                        <input type="submit" class="btn btn-success" id="enviar" name="enviar" value="Guardar" style="float:left" />
-                        <input type="submit" class="btn btn-danger" id="enviar" name="enviar" value="Volver" style="float:right" />
+                        </select>
 
-                    </div>
-        
-                </form>
+                        <div class="form-outline mt-3 mb-3" style="margin: 0 auto; width: 400px;">
+                            <input type="text" id="fechaF" name="fechaFin" class="form-control" disabled />
+                            <label class="form-label" for="fechaF">Termino</label>
+                        </div>
+
+                        <div class="form-outline mb-3 " style="margin: 0 auto; width: 400px;">
+                            <textarea required class="form-control" id="obs" name="obs" style="resize: none;"
+                                rows="6"></textarea>
+                            <label class="form-label" for="obs">Observacion</label>
+                        </div>
+
+                        <div class="card-footer mt-3">
+                            <input type="submit" class="btn btn-success" id="enviar" name="enviar" value="Guardar"
+                                style="float:left" />
+                            <a href="index.php" class="btn btn-danger" style="float:right">Volver</a>
+                            <!-- <input type="submit" class="btn btn-danger" id="enviar" name="enviar" value="Volver" style="float:right" /> -->
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-   
 
-    <script  src="https://code.jquery.com/jquery-3.6.0.js"
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
     <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
     </script>
-    <script l>
+    <script>
     $(document).ready(function() {
         $("#combo_servicio").change(function() {
 
@@ -100,6 +111,30 @@
         })
     });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#combo').on('submit', function(e) { //Don't foget to change the id form
+            $.ajax({
+                url: 'guarda.php', //===PHP file name====
+                data: $(this).serialize(),
+                type: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    //Success Message == 'Title', 'Message body', Last one leave as it is
+                    swal("¡Guardado!", "Incidencia guardada con exito!", "success").then(()=>{
+                        window.location = "index.php";
+                    });
+                },
+                error: function(data) {
+                    //Error Message == 'Title', 'Message body', Last one leave as it is
+                    swal("Oops...", "Something went wrong :(", "error");
+                }
+            });
+            e.preventDefault(); //This is to Avoid Page Refresh and Fire the Event "Click"
+        });
+    });
+    </script>
+
 
 </body>
 
