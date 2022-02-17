@@ -91,8 +91,15 @@ $result = mysqli_query($conn, $query);
         <!-- <a href="../../includes/logout.php" class="btn btn-danger" >Logout</a> -->
         <!-- <h1 class="">This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1> -->
     </header>
-    <div class="col-md-10" style="margin: 20px auto">
-        <table class="table table-bordered">
+    <?php
+    switch($accion){
+        case "";
+
+    }
+    
+    ?>
+    <div class="col-md-12" style="margin: 100px 0px auto auto">
+        <table class="table table-bordered ">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -102,6 +109,7 @@ $result = mysqli_query($conn, $query);
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
                     <th>Observacion</th>
+                    <th>Finalizar</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -118,7 +126,15 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row["fechaInicio"]; ?></td>
                     <td><?php echo $row["fechaFin"]; ?></td>
                     <td><?php echo $row["observacion"]; ?></td>
-                    <td>acciones</td>
+                    <td>finalizaar</td>
+
+                    <td>
+                        <form method="post">
+                            <input hidden type="text" name = "txtID" value ="<?php echo $row['id']?>">
+                            <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary">
+                            <input type="submit" name="accion" value="Eliminar" class="btn btn-danger">
+                        </form>
+                    </td>
                 </tr>
                 <?php
             }

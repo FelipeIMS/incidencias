@@ -55,7 +55,6 @@ if (!empty($_POST)) {
                     window.location.reload(1);
                  }, 3000); </script>';
             } else {
-              
                echo "Error: " . $sql . "" . mysqli_error($conn);
             }
             $conn->close();
