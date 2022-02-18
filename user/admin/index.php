@@ -239,7 +239,7 @@ while ($r = $query2->fetch_object()) { // Recorrer los resultados de Ejecutar la
           <label>Contraseña</label>
           <input type="text" name="password" id="password" class="form-control" />
           <br />
-          <select class="form-control" id="rol" name="rol" >
+          <select class="form-control" id="rol" name="rol">
             <option selected>Seleccionar Rol</option>
             <option value="1">Administrador</option>
             <option value="0">Usuario</option>
@@ -349,8 +349,7 @@ while ($r = $query2->fetch_object()) { // Recorrer los resultados de Ejecutar la
             }
           });
         }
-      })
-      ,
+      }),
       $('#insert_form4').on("submit", function(event) {
         event.preventDefault();
         if ($('#email').val() == "") {
