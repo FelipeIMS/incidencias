@@ -91,13 +91,23 @@ $result = mysqli_query($conn, $query);
         <!-- <a href="../../includes/logout.php" class="btn btn-danger" >Logout</a> -->
         <!-- <h1 class="">This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1> -->
     </header>
-    <!-- <?php
-    switch($accion){
-        case "";
-
+    <?php
+    if(isset($_POST['accion'])){
+        $accion= $_POST['accion'];
+        switch($accion){
+            case "Seleccionar":
+                echo "Presiono seleccionar";
+                break;
+            case "Modificar":
+                echo "Presiono modificar";
+                break;
+            case "Finalizar":
+                echo "Presiono finalizar";
+                break;
+        }
     }
     
-    ?> -->
+    ?>
     <div class="col-md-12" style="margin: 100px 0px auto auto">
         <table class="table table-bordered ">
             <thead>
@@ -128,7 +138,7 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row["observacion"]; ?></td>
                     <td>
                         <form  method="post">
-                            <input type="submit" name= "accion" value= "Finalizar" class= "btn btn-info ">
+                            <input type="submit" name= "accion" value= "Finalizar" class= "btn btn-danger"  disabled>
                         </form>
                     </td>
 
@@ -136,7 +146,7 @@ $result = mysqli_query($conn, $query);
                         <form method="post">
                             <input hidden type="text" name = "txtID" value ="<?php echo $row['id']?>">
                             <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary">
-                            <input type="submit" name="accion" value="Eliminar" class="btn btn-danger">
+                            <input type="submit" name="accion" value="Modificar" class="btn btn-success">
                         </form>
                     </td>
                 </tr>

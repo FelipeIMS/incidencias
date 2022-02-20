@@ -1,9 +1,7 @@
 <?php	
 	include 'settings.php'; //include settings
-	$query = "SELECT id_servicio, nombres FROM servicios ORDER BY nombres";
+	$query = "SELECT * FROM incidencias where id=:id";
 	$resultado=$conn->query($query);
-	$query2 = "SELECT id_area, nombreArea FROM area ORDER BY nombreArea";
-	$resultado2=$conn->query($query2);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,7 +77,7 @@
         <!-- Navbar -->
 
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="col-md-6" style="margin: 50px auto;">
             <div class="card text-center">
                 <div class="card-header">
