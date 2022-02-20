@@ -91,23 +91,6 @@ $result = mysqli_query($conn, $query);
         <!-- <a href="../../includes/logout.php" class="btn btn-danger" >Logout</a> -->
         <!-- <h1 class="">This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1> -->
     </header>
-    <?php
-    if(isset($_POST['accion'])){
-        $accion= $_POST['accion'];
-        switch($accion){
-            case "Seleccionar":
-                echo "Presiono seleccionar";
-                break;
-            case "Modificar":
-                echo "Presiono modificar";
-                break;
-            case "Finalizar":
-                echo "Presiono finalizar";
-                break;
-        }
-    }
-    
-    ?>
     <div class="col-md-12" style="margin: 100px 0px auto auto">
         <table class="table table-bordered ">
             <thead>
@@ -143,7 +126,9 @@ $result = mysqli_query($conn, $query);
                     </td>
 
                     <td>
-                        
+                    <form action="editar.php?id=<?php echo $row['id'];?>" method="POST" >
+                            <input type="submit" name= "accion" value= "Editar" class= "btn btn-success">
+                        </form>
                     </td>
                 </tr>
                 <?php
