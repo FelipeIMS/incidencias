@@ -30,10 +30,73 @@ $result = mysqli_query($conn, $query);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
 <body>
+
+    <?php
+    $accion = isset($_POST['accion'])?$_POST['accion']:"";
+    $id= isset($_POST['id'])?$_POST['id']:"";
+    $fin= isset($_POST['fin'])?$_POST['fin']:"";
+
+    switch($accion){
+        case("Finalizar"):
+            if($fin==null){
+                $sql = "UPDATE incidencias set fechaFin= now() where id_incidencias = '$id'";
+                $resultado = $conn -> query($sql);
+                if($resultado){
+                    echo "<script>  Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'INCIDENCIA FINALIZADA',
+                        text:'INCIDENCIA FINALIZADA EXITOSAMENTE',
+                        showConfirmButton: false,
+                        timer: 3000
+                      });</script>";
+                      echo '<script type="text/JavaScript"> setTimeout(function(){
+                        window.location="index.php";
+                     }, 3000); </script>';
+                }
+            }else{
+                echo "<script>  Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'ERROR AL FINALIZAR',
+                    text: 'INCIDENCIA YA FINALIZADA',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });</script>";
+                  echo '<script type="text/JavaScript"> setTimeout(function(){
+                   window.location="index.php";
+                }, 3000); </script>';
+            }
+            break;
+        case("Eliminar"):
+            $sql = "DELETE from incidencias WHERE id_incidencias = '$id'";
+            $resultado = $conn -> query($sql);
+            if($resultado){
+                echo "<script>  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'INCIDENCIA ELIMINADA',
+                    text:'INCIDENCIA ELIMINADA EXITOSAMENTE',
+                    showConfirmButton: false,
+                    timer: 3000
+                });</script>";
+                echo '<script type="text/JavaScript"> setTimeout(function(){
+                    window.location="index.php";
+                }, 3000); </script>';
+            }
+            break;
+
+    }
+
+    ?>
+
+
+
     <header class="header__content ">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -91,54 +154,60 @@ $result = mysqli_query($conn, $query);
         <!-- <a href="../../includes/logout.php" class="btn btn-danger" >Logout</a> -->
         <!-- <h1 class="">This is User page, Hola: <?php $ufunc->UserName(); //Show name who is in session user?></h1> -->
     </header>
-    <div class="col-md-12" style="margin: 100px 0px auto auto">
-        <table class="table table-bordered ">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Servicio</th>
-                    <th>Tipo Servicio</th>
-                    <th>Area</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Observacion</th>
-                    <th>Finalizar</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+    <div class="container-fluid">
+
+        <div class="col-md-12 mt-5">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <!-- <th>ID</th> -->
+                        <th>Servicio</th>
+                        <th>Tipo Servicio</th>
+                        <th>Area</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Observacion</th>
+                        <th>Finalizar</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td><?php echo $row["nombreservicio"]; ?></td>
+                        <td><?php echo $row["nombretipo"]; ?></td>
+                        <td><?php echo $row["nombre_area"]; ?></td>
+                        <td><?php echo $row["fechaInicio"]; ?></td>
+                        <td><?php echo $row["fechaFin"]; ?></td>
+                        <td><?php echo $row["observacion"]; ?></td>
+                        <td>
+                            <form method="post">
+                                <input type="submit" name="accion" value="Finalizar" class="btn btn-danger" >
+                                <input type="text" name="id" value="<?php echo $row["id"]; ?>" hidden>
+                                <input type="text" name="fin" value="<?php echo $row["fechaFin"]; ?>" hidden>
+                            </form>
+                        </td>
+
+                        <td>
+                            <form method="post">
+                                <a href="editar.php?id=<?php echo $row["id"] ?>" class='btn btn-success'>Editar</a>
+                                <input type="text" name="id" value="<?php echo $row["id"]; ?>" hidden>
+                                <input type="submit" name="accion" value="Eliminar" class='btn btn-danger'></input>
+                            </form>
+                        </td>
+                    </tr>
                     <?php
-            while ($row = mysqli_fetch_array($result)) {
-            ?>
-                <tr>
-                    <td><?php echo $row["id"]; ?></td>
-                    <td><?php echo $row["nombreservicio"]; ?></td>
-                    <td><?php echo $row["nombretipo"]; ?></td>
-                    <td><?php echo $row["nombre_area"]; ?></td>
-                    <td><?php echo $row["fechaInicio"]; ?></td>
-                    <td><?php echo $row["fechaFin"]; ?></td>
-                    <td><?php echo $row["observacion"]; ?></td>
-                    <td>
-                        <form  method="post">
-                            <input type="submit" name= "accion" value= "Finalizar" class= "btn btn-danger"  disabled>
-                        </form>
-                    </td>
+                }
+                ?>
 
-                    <td>
-                    <form action="editar.php?id=<?php echo $row['id'];?>" method="POST" >
-                            <input type="submit" name= "accion" value= "Editar" class= "btn btn-success">
-                        </form>
-                    </td>
-                </tr>
-                <?php
-            }
-            ?>
+                    </tr>
+                </tbody>
+            </table>
 
-                </tr>
-            </tbody>
-        </table>
-
+        </div>
     </div>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -153,7 +222,6 @@ $result = mysqli_query($conn, $query);
     </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 </body>
