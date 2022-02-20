@@ -143,11 +143,7 @@ $result = mysqli_query($conn, $query);
                     </td>
 
                     <td>
-                        <form method="post">
-                            <input hidden type="text" name = "txtID" value ="<?php echo $row['id']?>">
-                            <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary">
-                            <input type="submit" name="accion" value="Modificar" class="btn btn-success">
-                        </form>
+                        
                     </td>
                 </tr>
                 <?php
