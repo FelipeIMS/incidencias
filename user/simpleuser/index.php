@@ -30,6 +30,8 @@ $result = mysqli_query($conn, $query);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
@@ -156,8 +158,8 @@ $result = mysqli_query($conn, $query);
     </header>
     <div class="container-fluid">
 
-        <div class="col-md-12 mt-5">
-            <table class="table table-bordered ">
+        <div class="col-md-12 mt-4">
+            <table class="table table-bordered" id="tabla">
                 <thead>
                     <tr>
                         <!-- <th>ID</th> -->
@@ -209,8 +211,11 @@ $result = mysqli_query($conn, $query);
 
         </div>
     </div>
+
+    <script src="./js/main.js"></script>
+    
     <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
     </script>
