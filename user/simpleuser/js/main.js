@@ -7,3 +7,4 @@ const datatable = new DataTable(tabla,{
         info: "Mostrando {start} a {end} de {rows} incidencias",
     }
 });
+
