@@ -168,7 +168,7 @@ $result = mysqli_query($conn, $query);
                         <th>Area</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
-                        <th>Observacion</th>
+                        <th width="30%">Observacion</th>
                         <th>Finalizar</th>
                         <th>Acciones</th>
                     </tr>
