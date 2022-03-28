@@ -100,6 +100,10 @@
                             style="margin: 0 auto; width: 400px;"></select>
 
 
+                        <!-- <select class="form-select form-select-md mt-3" name="combo_impresora" id="combo_impresora"
+                            style="margin: 0 auto; width: 400px;"></select> -->
+
+
                         <select class="form-select form-select-md mt-3" name="select_area" id="select_area"
                             aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
                             <option value="0"> Area</option>
@@ -156,9 +160,6 @@
     $(document).ready(function() {
         $("#combo_servicio").change(function() {
 
-            $('#combo_area').find('option').remove().end().append('<option value="whatever"></option>')
-                .val('whatever');
-
             $("#combo_servicio option:selected").each(function() {
                 id_tp = $(this).val();
                 $.post("get_ts.php", {
@@ -167,6 +168,14 @@
                     $("#combo_ts").html(data);
                 });
             });
+            // $("#combo_servicio option:selected").each(function() {
+            //     id_tp = $(this).val();
+            //     $.post("get_impresora.php", {
+            //         id_tp: id_tp
+            //     }, function(data) {
+            //         $("#combo_impresora").html(data);
+            //     });
+            // });
         })
     });
     </script>
