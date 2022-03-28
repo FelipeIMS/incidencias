@@ -187,7 +187,7 @@ $result = mysqli_query($conn, $query);
                         <td><?php echo $row["observacion"]; ?></td>
                         <td>
                             <form method="post">
-                                <input type="submit" name="accion" value="Finalizar" class="btn btn-danger" >
+                                <input type="submit" name="accion" value="Finalizar" class="btn btn-danger" <?php if ($row['fechaFin'] != null   ) { ?> style="display: none;" <?php   } ?>>
                                 <input type="text" name="id" value="<?php echo $row["id"]; ?>" hidden>
                                 <input type="text" name="fin" value="<?php echo $row["fechaFin"]; ?>" hidden>
                             </form>
