@@ -4,6 +4,7 @@
 	$resultado=$conn->query($query);
 	$query2 = "SELECT id_area, nombreArea FROM area ORDER BY nombreArea";
 	$resultado2=$conn->query($query2);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,7 +106,7 @@
 
 
                         <select class="form-select form-select-md mt-3" name="select_area" id="select_area"
-                            aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;">
+                            aria-label=".form-select-sm example" style="margin: 0 auto; width: 400px;" >
                             <option value="0"> Area</option>
                             <?php while($row = $resultado2->fetch_assoc()) { ?>
                             <option value="<?php echo $row['id_area']; ?>"><?php echo $row['nombreArea']; ?></option>
@@ -179,6 +180,16 @@
         })
     });
     </script>
+    <!-- <script>
+    $(document).change(function() {
+        const servicio = $("#combo_servicio").val()
+        if(servicio == 9){
+            $("#select_area").hide();  
+        }else{
+            $("#select_area").show();
+        }
+    });
+    </script> -->
     <!-- <script type="text/javascript">
     $(document).ready(function() {
         $('#combo').on('submit', function(e) { //Don't foget to change the id form
